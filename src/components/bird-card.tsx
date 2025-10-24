@@ -76,6 +76,7 @@ const BirdCard: React.FC<BirdCardProps> = ({ bird }) => {
             className="object-contain w-full h-auto max-w-24 lg:max-w-40 max-h-24 lg:max-h-40"
             src={bird.thumbnail}
             alt={bird.name}
+            loading="lazy"
           />
         </div>
         <div>
