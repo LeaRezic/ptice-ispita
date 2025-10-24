@@ -1,4 +1,5 @@
 import * as React from 'react';
+import BirdLinks from './bird-links';
 
 interface Bird {
   id: string;
@@ -32,57 +33,28 @@ const BirdCard: React.FC<BirdCardProps> = ({ bird }) => {
       <div className="absolute top-5 left-2 z-20 text-gray-400 text-xs font-medium">
         {bird.pictureExam && 'i'}{bird.audioExam && 'g'}
       </div>
-      <div className="absolute top-2 right-2 z-20 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-1">
-        {bird.birdBookLink && (
-          <a
-            href={bird.birdBookLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-6 h-6 bg-orange-400 hover:bg-orange-500 text-white rounded-full flex items-center justify-center text-xs transition-colors shadow-md"
-            title="Bird Book"
-          >
-            📖
-          </a>
-        )}
-
-        {bird.birdsOfTheWorldLink && (
-          <a
-            href={bird.birdsOfTheWorldLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-6 h-6 bg-green-400 hover:bg-green-500 text-white rounded-full flex items-center justify-center text-xs transition-colors shadow-md"
-            title="Birds of the World"
-          >
-            🌍
-          </a>
-        )}
-
-        {bird.xenoCantoLink && (
-          <a
-            href={bird.xenoCantoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-6 h-6 bg-teal-400 hover:bg-teal-500 text-white rounded-full flex items-center justify-center text-xs transition-colors shadow-md"
-            title="Xeno-Canto"
-          >
-            🎵
-          </a>
-        )}
+      <div className="hidden xs:flex absolute top-2 right-2 z-20 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex-col gap-1">
+        <BirdLinks bird={bird} />
       </div>
 
-      <div className="flex-1 flex flex-col min-h-full items-center text-center gap-2 p-2">
-        <div className="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex flex-row xs:flex-col min-h-full xs:items-center text-center gap-2 p-2">
+        <div className="pl-12 xs:pl-0 xs:flex-1 flex justify-center items-center">
           <img
-            className="object-contain w-full h-auto max-w-24 lg:max-w-40 max-h-24 lg:max-h-40"
+            className="object-contain w-full h-auto max-w-32 lg:max-w-40 max-h-32 lg:max-h-40"
             src={bird.thumbnail}
             alt={bird.name}
             loading="lazy"
           />
         </div>
-        <div>
-          <p className="text-sm lg:text-base">{bird.name}</p>
-          <p className="text-tiny lg:text-xs text-gray-500">{bird.nameEnglish}</p>
-          <p className="text-tiny lg:text-xs text-gray-500">{bird.nameLatin}</p>
+        <div className="flex-1 xs:flex-initial flex flex-col justify-between">
+          <div className="text-right xs:text-center">
+            <p className="text-base">{bird.name}</p>
+            <p className="text-tiny lg:text-xs text-gray-500">{bird.nameEnglish}</p>
+            <p className="text-tiny lg:text-xs text-gray-500">{bird.nameLatin}</p>
+          </div>
+          <div className="xs:hidden mt-2 flex justify-end gap-1">
+            <BirdLinks bird={bird} />
+          </div>
         </div>
       </div>
     </div>
