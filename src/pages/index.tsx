@@ -77,7 +77,7 @@ export default function BirdListPage() {
       </Head>
       <h1 className="container-padding-x text-4xl font-bold text-gray-900">Ptice ispita</h1>
 
-      <div className="container-padding-x flex gap-4 items-center flex-wrap md:sticky md:top-0 bg-white z-[30] py-4 border-b border-gray-200">
+      <div className="container-padding-x flex gap-4 items-center flex-wrap 2xl:sticky 2xl:top-0 bg-white z-[30] py-4 border-b border-gray-200">
         <input
           type="text"
           placeholder="Pretraži po nazivu..."
