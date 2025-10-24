@@ -73,15 +73,15 @@ const BirdCard: React.FC<BirdCardProps> = ({ bird }) => {
       <div className="flex-1 flex flex-col min-h-full items-center text-center gap-2 p-2">
         <div className="flex-1 flex justify-center items-center">
           <img
-            className="object-contain w-full h-auto max-w-40 max-h-40"
+            className="object-contain w-full h-auto max-w-24 lg:max-w-40 max-h-24 lg:max-h-40"
             src={bird.thumbnail}
             alt={bird.name}
           />
         </div>
         <div>
-          <p>{bird.name}</p>
-          <p className="text-xs text-gray-500">{bird.nameEnglish}</p>
-          <p className="text-xs text-gray-500">{bird.nameLatin}</p>
+          <p className="text-sm lg:text-base">{bird.name}</p>
+          <p className="text-tiny lg:text-xs text-gray-500">{bird.nameEnglish}</p>
+          <p className="text-tiny lg:text-xs text-gray-500">{bird.nameLatin}</p>
         </div>
       </div>
     </div>

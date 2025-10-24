@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div
       className={`${geistSans.className} ${geistMono.className} font-sans min-h-screen py-8 pb-20 sm:py-20`}
     >
-      <main className="flex flex-col gap-[32px] items-center sm:items-start text-xs md:text-base">
+      <main className="flex flex-col gap-[32px] min-w-full sm:items-start text-xs md:text-base">
         <Component {...pageProps} />
       </main>
       <footer className="flex gap-[24px] flex-wrap items-center justify-center">

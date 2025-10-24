@@ -77,7 +77,7 @@ export default function BirdListPage() {
       </Head>
       <h1 className="container-padding-x text-4xl font-bold text-gray-900">Ptice ispita</h1>
 
-      <div className="container-padding-x flex gap-4 items-center flex-wrap 2xl:sticky 2xl:top-0 bg-white z-[30] py-4 border-b border-gray-200">
+      <div className="container-padding-x grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:flex gap-4 items-stretch 2xl:sticky 2xl:top-0 bg-white z-[30] py-4 border-b border-gray-200">
         <input
           type="text"
           placeholder="Pretraži po nazivu..."
@@ -103,18 +103,20 @@ export default function BirdListPage() {
           value={examType}
           onChange={setExamType}
         />
-        <Toggle
-          label="Grupiraj"
-          value={groupByCategory}
-          onChange={setGroupByCategory}
-        />
-        <button
-          className="btn-primary"
-          onClick={reset}
-        >
-          Resetiraj
-        </button>
-        <p className="text-xs text-gray-500" title="prikazano od ukupno">{filtered.length}/{birds.length}</p>
+        <div className="flex items-center gap-4">
+          <Toggle
+            label="Grupiraj"
+            value={groupByCategory}
+            onChange={setGroupByCategory}
+          />
+          <button
+            className="btn-primary"
+            onClick={reset}
+          >
+            Resetiraj
+          </button>
+          <p className="text-xs text-gray-500" title="prikazano od ukupno">{filtered.length}/{birds.length}</p>
+        </div>
       </div>
 
 
@@ -122,11 +124,11 @@ export default function BirdListPage() {
         {groupByCategory ? Object.entries(grouped).map(([category, birdsInCategory]) => (
           <li key={category} className="w-full mt-4">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">{category}</h2>
-            <ul className="flex gap-4 flex-wrap">
+            <ul className="flex gap-1 lg:gap-4 flex-wrap">
               {birdsInCategory.map(bird => (
                 <li
                   key={bird.id}
-                  className="border border-gray-300 rounded-lg hover:shadow-lg transition-shadow w-64 h-64"
+                  className="border border-gray-300 rounded-lg hover:shadow-lg transition-shadow w-48 lg:w-64 h-48 lg:h-64"
                 >
                   <BirdCard bird={bird} />
                 </li>
@@ -137,7 +139,7 @@ export default function BirdListPage() {
           filtered.map(bird => (
             <li
               key={bird.id}
-              className="border border-gray-300 rounded-lg hover:shadow-lg transition-shadow w-64 h-64"
+              className="border border-gray-300 rounded-lg hover:shadow-lg transition-shadow w-48 lg:w-64 h-48 lg:h-64"
             >
             <BirdCard bird={bird} />
           </li>
