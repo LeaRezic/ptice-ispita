@@ -3,7 +3,7 @@ import React from 'react';
 interface SelectProps {
   label: string;
   options: string[];
-  value?: string; // controlled value
+  value?: string;
   onChange: (value: string) => void;
 }
 
