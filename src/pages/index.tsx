@@ -167,7 +167,7 @@ export default function BirdListPage() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed left-1/2 xs:left-auto transform -translate-x-1/2 xs:-translate-x-0 bottom-4 xs:bottom-6 xs:right-6 z-50 bg-slate-500 hover:bg-slate-600 text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 cursor-pointer"
+          className="fixed left-1/2 xs:left-auto transform -translate-x-1/2 xs:-translate-x-0 bottom-6 xs:right-6 z-50 bg-slate-500 hover:bg-slate-600 text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 cursor-pointer"
           aria-label="Odi na vrh stranice"
         >
           <svg
