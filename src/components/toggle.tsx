@@ -22,7 +22,7 @@ const Toggle: React.FC<ToggleProps> = ({ label, value, onChange }) => {
       aria-checked={value}
       aria-label={label}
     >
-      <span className="font-medium text-gray-700">
+      <span className="font-medium text-gray-700 dark:text-gray-300">
         {label}
       </span>
       <div

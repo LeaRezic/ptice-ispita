@@ -30,7 +30,7 @@ const BirdCard: React.FC<BirdCardProps> = ({ bird }) => {
         </div>
         <div className="flex-1 xs:flex-initial flex flex-col justify-between">
           <div className="text-right xs:text-center">
-            <p className="text-base">{bird.name}</p>
+            <p className="text-base text-gray-900">{bird.name}</p>
             <p className="text-tiny lg:text-xs text-gray-500">{bird.nameEnglish}</p>
             <p className="text-tiny lg:text-xs text-gray-500">{bird.nameLatin}</p>
           </div>

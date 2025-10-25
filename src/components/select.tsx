@@ -11,7 +11,7 @@ const Select: React.FC<SelectProps> = ({ label, options, value, onChange }) => {
   const id = `select-${label.replace(/\s+/g, '-').toLowerCase()}`;
   return (
     <div className="min-w-full md:min-w-0 flex gap-x-2 md:items-center flex-col md:flex-row">
-      <label htmlFor={id} className="font-medium text-gray-700 whitespace-nowrap">{label}</label>
+      <label htmlFor={id} className="font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">{label}</label>
       <select
         id={id}
         className="outline-slate h-[40] text-sm flex-1 3xl:flex-unset border border-gray-300 rounded p-2"
