@@ -1,24 +1,6 @@
 import * as React from 'react';
 import BirdLinks from './bird-links';
-
-interface Bird {
-  id: string;
-  name: string;
-  nameEnglish: string;
-  nameLatin: string;
-  description: string;
-  thumbnail: string;
-  lecture: string;
-  category: string;
-  pictureExam: boolean;
-  audioExam: boolean;
-  images: string[];
-  audio: string[];
-  birdBookLink: string;
-  birdsOfTheWorldLink: string;
-  textbookPage: number;
-  xenoCantoLink: string;
-}
+import { Bird } from '@/types/bird';
 
 interface BirdCardProps {
   bird: Bird;
@@ -33,12 +15,12 @@ const BirdCard: React.FC<BirdCardProps> = ({ bird }) => {
       <div className="absolute top-5 left-2 z-20 text-gray-400 text-xs font-medium">
         {bird.pictureExam && 'i'}{bird.audioExam && 'g'}
       </div>
-      <div className="hidden xs:flex absolute top-2 right-2 z-20 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex-col gap-1">
+      <div className="hidden xs:flex absolute top-2 right-2 z-20 opacity-100 xs:pointer-fine:opacity-0 xs:pointer-fine:group-hover:opacity-100 xs:pointer-fine:group-focus-within:opacity-100 transition-opacity duration-300 flex-col gap-1">
         <BirdLinks bird={bird} />
       </div>
 
       <div className="flex-1 flex flex-row xs:flex-col min-h-full xs:items-center text-center gap-2 p-2">
-        <div className="pl-12 xs:pl-0 xs:flex-1 flex justify-center items-center">
+        <div className="pl-8 xs:pl-0 xs:flex-1 flex justify-center items-center">
           <img
             className="object-contain w-full h-auto max-w-32 lg:max-w-40 max-h-32 lg:max-h-40"
             src={bird.thumbnail}

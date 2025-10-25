@@ -4,6 +4,10 @@ import Select from '@/components/select';
 import BirdCard from '@/components/bird-card';
 import Toggle from '@/components/toggle';
 import Head from 'next/head';
+import { Bird } from '@/types/bird';
+
+const LECTURES = ["Sve", "Ptice gradskih staništa", "Vodarice i kokoške", "Grabljivice", "Djetlovke, smrdovrane, preostale pjevice", "Cvrkutuše"];
+const EXAM_TYPES = ["Izgled i/ili glasanje", "Izgled", "Glasanje", "Izgled i glasanje", "Samo izgled", "Samo glasanje"];
 
 export default function BirdListPage() {
   const [search, setSearch] = useState("");
@@ -11,14 +15,12 @@ export default function BirdListPage() {
   const [category, setCategory] = useState("Sve");
   const [lecture, setLecture] = useState("Sve");
   const [examType, setExamType] = useState("Izgled i/ili glasanje");
-
   const [groupByCategory, setGroupByCategory] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const categories = ["Sve", ...new Set(birds.map(b => b.category))];
-  const lectures = ["Sve", ...new Set(birds.map(b => b.lecture))];
-  const examTypes = ["Izgled i/ili glasanje", "Izgled", "Glasanje", "Izgled i glasanje", "Samo izgled", "Samo glasanje"];
+  const categories = ["Sve", ...[...new Set(birds.map(b => b.category))].sort()];
 
-  const filtered = birds
+  const filteredBirds = birds
     .filter((b) => {
       const categoryMatch = category === "Sve" || b.category === category;
       const lectureMatch = lecture === "Sve" || b.lecture === lecture;
@@ -44,7 +46,7 @@ export default function BirdListPage() {
     })
     .sort((a, b) => a.textbookPage - b.textbookPage);
 
-  const grouped = filtered.reduce((acc: Record<string, typeof birds>, bird) => {
+  const groupedBirds = filteredBirds.reduce((acc: Record<string, Bird[]>, bird) => {
     if (!acc[bird.category]) {
       acc[bird.category] = [];
     }
@@ -70,6 +72,22 @@ export default function BirdListPage() {
     };
   }, [search]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="space-y-4 md:space-y-12">
       <Head>
@@ -83,7 +101,7 @@ export default function BirdListPage() {
           placeholder="Pretraži po nazivu..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="min-w-full md:min-w-0 border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="outline-slate min-w-full md:min-w-0 border border-gray-300 rounded p-2"
         />
         <Select
           label="Kategorija"
@@ -93,13 +111,13 @@ export default function BirdListPage() {
         />
         <Select
           label="Predavanje"
-          options={lectures}
+          options={LECTURES}
           value={lecture}
           onChange={setLecture}
         />
         <Select
           label="Tip ispita"
-          options={examTypes}
+          options={EXAM_TYPES}
           value={examType}
           onChange={setExamType}
         />
@@ -115,13 +133,13 @@ export default function BirdListPage() {
           >
             Resetiraj
           </button>
-          <p className="text-xs text-gray-500" title="prikazano od ukupno">{filtered.length}/{birds.length}</p>
+          <p className="text-xs text-gray-500" title="prikazano od ukupno">{filteredBirds.length}/{birds.length}</p>
         </div>
       </div>
 
 
-      <ul className="container-padding-x flex gap-4 flex-wrap">
-        {groupByCategory ? Object.entries(grouped).map(([category, birdsInCategory]) => (
+      <ul className="container-padding-x flex gap-2 lg:gap-4 flex-wrap">
+        {groupByCategory ? Object.entries(groupedBirds).map(([category, birdsInCategory]) => (
           <li key={category} className="w-full mt-4">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">{category}</h2>
             <ul className="flex gap-2 lg:gap-4 flex-wrap">
@@ -136,7 +154,7 @@ export default function BirdListPage() {
             </ul>
           </li>
         )) : (
-          filtered.map(bird => (
+          filteredBirds.map(bird => (
             <li
               key={bird.id}
               className="border border-gray-300 rounded-lg hover:shadow-lg transition-shadow w-full xs:w-48 lg:w-64 h-auto lg:h-64"
@@ -145,6 +163,28 @@ export default function BirdListPage() {
           </li>
         )))}
       </ul>
+
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed left-1/2 xs:left-auto transform -translate-x-1/2 xs:-translate-x-0 bottom-2 xs:bottom-6 xs:right-6 z-50 bg-slate-500 hover:bg-slate-600 text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 cursor-pointer"
+          aria-label="Odi na vrh stranice"
+        >
+          <svg
+            className="w-4 h-4 lg:w-6 lg:h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
