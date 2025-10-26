@@ -19,7 +19,7 @@ export default function BirdListPage() {
   const [groupByCategory, setGroupByCategory] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const categories = ["Sve", ...[...new Set(birds.map(b => b.category))].sort()];
+  const categories = ["Sve", ...[...new Set(birds.map(b => b.category))].sort((a, b) => a.localeCompare(b))];
 
   const filteredBirds = birds
     .filter((b) => {
