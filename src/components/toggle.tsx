@@ -16,13 +16,13 @@ const Toggle: React.FC<ToggleProps> = ({ label, value, onChange }) => {
 
   return (
     <div
-      className="rounded flex items-center space-x-4 cursor-pointer"
+      className="rounded flex items-center space-x-2 cursor-pointer"
       onClick={() => onChange(!value)}
       role="switch"
       aria-checked={value}
       aria-label={label}
     >
-      <span className="font-medium text-gray-700 dark:text-gray-300">
+      <span className="md:min-w-[96] 3xl:min-w-0 font-medium text-gray-700 dark:text-gray-300">
         {label}
       </span>
       <div

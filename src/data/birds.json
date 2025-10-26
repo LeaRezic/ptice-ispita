@@ -13,7 +13,7 @@
         "audio": [],
         "textbookPage": 14,
         "birdBookLink": "https://birdid.no/birds/405",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/rocpig/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/mutswa/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Cygnus-olor",
         "pictureExam": true,
         "audioExam": true
@@ -51,7 +51,7 @@
         "audio": [],
         "textbookPage": 16,
         "birdBookLink": "https://birdid.no/birds/894",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/gragoo/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/gwfgoo/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Anser-albifrons",
         "pictureExam": true,
         "audioExam": false
@@ -70,7 +70,7 @@
         "audio": [],
         "textbookPage": 44,
         "birdBookLink": "https://birdid.no/birds/437",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/gragoo/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/commer/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Mergus-merganser",
         "pictureExam": true,
         "audioExam": false
@@ -154,7 +154,7 @@
     {
         "id": "glavata-patka",
         "name": "Glavata patka",
-        "nameEnglish": "Pochard",
+        "nameEnglish": "(Common) Pochard",
         "nameLatin": "Aythya ferina",
         "description": "",
         "thumbnail": "images/glavata-patka.png",
@@ -222,7 +222,7 @@
         "audio": [],
         "textbookPage": 26,
         "birdBookLink": "https://birdid.no/birds/96",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/wigear/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/eurwig/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Mareca-penelope",
         "pictureExam": true,
         "audioExam": true
@@ -306,7 +306,7 @@
     {
         "id": "crnogrli-gnjurac",
         "name": "Crnogrli gnjurac",
-        "nameEnglish": "Black-necked Grebe",
+        "nameEnglish": "Black-necked (Eared) Grebe",
         "nameLatin": "Podiceps nigricollis",
         "description": "",
         "thumbnail": "images/crnogrli-gnjurac.png",
@@ -325,7 +325,7 @@
     {
         "id": "prepelica",
         "name": "Prepelica",
-        "nameEnglish": "Quail",
+        "nameEnglish": "(Common) Quail",
         "nameLatin": "Coturnix coturnix",
         "description": "",
         "thumbnail": "images/prepelica.png",
@@ -363,7 +363,7 @@
     {
         "id": "fazan",
         "name": "Fazan",
-        "nameEnglish": "Pheasant",
+        "nameEnglish": "(Ring-necked) (Common) Pheasant",
         "nameLatin": "Phasianus colchicus",
         "description": "",
         "thumbnail": "images/fazan.png",
@@ -401,7 +401,7 @@
     {
         "id": "kosac",
         "name": "Kosac",
-        "nameEnglish": "Corncrake",
+        "nameEnglish": "Corn Crake",
         "nameLatin": "Crex crex",
         "description": "",
         "thumbnail": "images/kosac.png",
@@ -439,7 +439,7 @@
     {
         "id": "tetrijeb-gluhan",
         "name": "Tetrijeb gluhan",
-        "nameEnglish": "Capercaillie",
+        "nameEnglish": "(Western) Capercaillie",
         "nameLatin": "Tetrao urogallus",
         "description": "",
         "thumbnail": "images/tetrijeb-gluhan.png",
@@ -450,7 +450,7 @@
         "audio": [],
         "textbookPage": 50,
         "birdBookLink": "https://birdid.no/birds/772",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/teturo1/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/wescap1/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Tetrao-urogallus",
         "pictureExam": true,
         "audioExam": false
@@ -572,7 +572,7 @@
     {
         "id": "zdral",
         "name": "Ždral",
-        "nameEnglish": "Crane",
+        "nameEnglish": "(Common) Crane",
         "nameLatin": "Grus grus",
         "description": "",
         "thumbnail": "images/zdral.png",
@@ -724,7 +724,7 @@
     {
         "id": "gak",
         "name": "Gak",
-        "nameEnglish": "Night Heron",
+        "nameEnglish": "(Black-crowned) Night Heron",
         "nameLatin": "Nycticorax nycticorax",
         "description": "",
         "thumbnail": "images/gak.png",
@@ -792,7 +792,7 @@
         "audio": [],
         "textbookPage": 84,
         "birdBookLink": "https://birdid.no/birds/576",
-        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/purher/cur/introduction",
+        "birdsOfTheWorldLink": "https://birdsoftheworld.org/bow/species/purher1/cur/introduction",
         "xenoCantoLink": "https://xeno-canto.org/species/Ardea-purpurea",
         "pictureExam": true,
         "audioExam": false
@@ -2263,7 +2263,7 @@
     {
         "id": "seva-krunica",
         "name": "Ševa krunica",
-        "nameEnglish": "Woodlark",
+        "nameEnglish": "Wood Lark",
         "nameLatin": "Lullula arborea",
         "description": "",
         "thumbnail": "images/seva-krunica.png",
@@ -2282,7 +2282,7 @@
     {
         "id": "crna-ciopa",
         "name": "Crna čiopa (čiopa)",
-        "nameEnglish": "Swift",
+        "nameEnglish": "(Common) Swift",
         "nameLatin": "Apus apus",
         "description": "",
         "thumbnail": "images/crna-ciopa.png",
@@ -2396,7 +2396,7 @@
     {
         "id": "piljak",
         "name": "Piljak",
-        "nameEnglish": "House Martin",
+        "nameEnglish": "(Western) House Martin",
         "nameLatin": "Delichon urbicum",
         "description": "",
         "thumbnail": "images/piljak.png",
@@ -2415,7 +2415,7 @@
     {
         "id": "daurska-lastavica",
         "name": "Daurska lastavica",
-        "nameEnglish": "Red-rumped Swallow",
+        "nameEnglish": "(Eastern) Red-rumped Swallow",
         "nameLatin": "Cecropis daurica",
         "description": "",
         "thumbnail": "images/daurska-lastavica.png",
@@ -2434,7 +2434,7 @@
     {
         "id": "vatroglavi-kraljic",
         "name": "Vatroglavi kraljić",
-        "nameEnglish": "Firecrest",
+        "nameEnglish": "(Common) Firecrest",
         "nameLatin": "Regulus ignicapilla",
         "description": "",
         "thumbnail": "images/vatroglavi-kraljic.png",
@@ -2624,7 +2624,7 @@
     {
         "id": "kamenjar",
         "name": "Kamenjar",
-        "nameEnglish": "Rock Thrush",
+        "nameEnglish": "(Rufous-tailed) Rock Thrush",
         "nameLatin": "Monticola saxatilis",
         "description": "",
         "thumbnail": "images/kamenjar.png",

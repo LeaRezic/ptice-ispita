@@ -5,6 +5,7 @@ import BirdCard from '@/components/bird-card';
 import Toggle from '@/components/toggle';
 import Head from 'next/head';
 import { Bird } from '@/types/bird';
+import Input from '@/components/input';
 
 const LECTURES = ["Sve", "Ptice gradskih staništa", "Vodarice i kokoške", "Grabljivice", "Djetlovke, smrdovrane, preostale pjevice", "Cvrkutuše"];
 const EXAM_TYPES = ["Izgled i/ili glasanje", "Izgled", "Glasanje", "Izgled i glasanje", "Samo izgled", "Samo glasanje"];
@@ -89,31 +90,30 @@ export default function BirdListPage() {
   };
 
   return (
-    <div className="space-y-4 md:space-y-12">
+    <div className="space-y-4 md:space-y-12 min-w-full">
       <Head>
         <title>Ptice ispita</title>
       </Head>
       <h1 className="container-padding-x text-4xl font-bold text-gray-900 dark:text-gray-100">Ptice ispita</h1>
 
       <div className="container-padding-x grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:flex gap-4 items-stretch 3xl:sticky 3xl:top-0 bg-white dark:bg-gray-950 z-[30] py-4 border-b border-gray-200">
-        <input
-          type="text"
-          placeholder="Pretraži po nazivu..."
+        <Input
+          label="Ptičica"
+          placeholder="Pretraži po nazivu ptice..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="outline-slate text-sm min-w-full md:min-w-0 border border-gray-300 dark:placeholder-gray-400 rounded p-2"
-        />
-        <Select
-          label="Kategorija"
-          options={categories}
-          value={category}
-          onChange={setCategory}
+          onChange={setSearch}
         />
         <Select
           label="Predavanje"
           options={LECTURES}
           value={lecture}
           onChange={setLecture}
+        />
+        <Select
+          label="Skupina"
+          options={categories}
+          value={category}
+          onChange={setCategory}
         />
         <Select
           label="Tip ispita"
