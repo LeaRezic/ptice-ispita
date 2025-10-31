@@ -13,8 +13,8 @@ const Select: React.FC<SelectProps> = ({ label, options, value, onChange }) => {
 
   return (
     <div className="min-w-full md:min-w-0 flex gap-x-2 md:items-center flex-col md:flex-row">
-      <label htmlFor={id} className="min-w-[96] 3xl:min-w-0 font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">{label}</label>
-      <div className="relative flex-1 3xl:flex-initial">
+      <label htmlFor={id} className="min-w-[96] font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">{label}</label>
+      <div className="relative flex-1">
         <select
           id={id}
           className={`outline-slate h-[40px] text-sm w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded p-2 appearance-none ${

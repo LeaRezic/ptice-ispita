@@ -7,6 +7,7 @@ export interface Bird {
   thumbnail: string;
   lecture: string;
   category: string;
+  subCategory: string;
   pictureExam: boolean;
   audioExam: boolean;
   images: string[];

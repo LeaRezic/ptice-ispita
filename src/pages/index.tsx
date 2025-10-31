@@ -2,13 +2,13 @@ import birds from "@/data/birds.json";
 import { useEffect, useState } from "react";
 import Select from '@/components/select';
 import BirdCard from '@/components/bird-card';
-import Toggle from '@/components/toggle';
 import Head from 'next/head';
 import { Bird } from '@/types/bird';
 import Input from '@/components/input';
 
 const LECTURES = ["Sve", "Ptice gradskih staništa", "Vodarice i kokoške", "Grabljivice", "Djetlovke, smrdovrane, preostale pjevice", "Cvrkutuše"];
 const EXAM_TYPES = ["Izgled i/ili glasanje", "Izgled", "Glasanje", "Izgled i glasanje", "Samo izgled", "Samo glasanje"];
+const GROUPING = ["Skupine", "Skupine i podskupine", "Bez grupiranja"];
 
 export default function BirdListPage() {
   const [search, setSearch] = useState("");
@@ -16,10 +16,10 @@ export default function BirdListPage() {
   const [category, setCategory] = useState("Sve");
   const [lecture, setLecture] = useState("Sve");
   const [examType, setExamType] = useState("Izgled i/ili glasanje");
-  const [groupByCategory, setGroupByCategory] = useState(true);
+  const [grouping, setGrouping] = useState("Skupine");
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const categories = ["Sve", ...[...new Set(birds.map(b => b.category))].sort((a, b) => a.localeCompare(b))];
+  const categories = ["Sve", ...[...new Set(birds.map(b => b.category))].sort((a, b) => a.localeCompare(b, 'hr', { sensitivity: 'base' }))];
 
   const filteredBirds = birds
     .filter((b) => {
@@ -55,10 +55,26 @@ export default function BirdListPage() {
     return acc;
   }, {});
 
+  const subGroupedBirds = Object.keys(groupedBirds).reduce((acc, category) => {
+    if (groupedBirds[category].some((b) => b.subCategory !== category)) {
+      acc[category] = groupedBirds[category].reduce((acc: Record<string, Bird[]>, bird) => {
+        if (!acc[bird.subCategory]) {
+          acc[bird.subCategory] = [];
+        }
+        acc[bird.subCategory].push(bird);
+        return acc;
+      }, {})
+    } else {
+      acc[category] = groupedBirds[category];
+    }
+    return acc;
+  }, {} as Record<string, Record<string, Bird[]> | Bird[]>);
+
   const reset = () => {
     setCategory("Sve");
     setLecture("Sve");
     setExamType("Izgled i/ili glasanje");
+    setGrouping("Skupine");
     setSearch("");
     setDebouncedSearch("");
   }
@@ -96,18 +112,12 @@ export default function BirdListPage() {
       </Head>
       <h1 className="container-padding-x text-4xl font-bold text-gray-900 dark:text-gray-100">Ptice ispita</h1>
 
-      <div className="container-padding-x grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:flex gap-4 items-stretch 3xl:sticky 3xl:top-0 bg-white dark:bg-gray-950 z-[30] py-4 border-b border-gray-200">
+      <div className="container-padding-x grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 items-stretch 3xl:sticky 3xl:top-0 bg-white dark:bg-gray-950 z-[30] py-4 border-b border-gray-200">
         <Input
           label="Ptičica"
           placeholder="Pretraži po nazivu ptice..."
           value={search}
           onChange={setSearch}
-        />
-        <Select
-          label="Predavanje"
-          options={LECTURES}
-          value={lecture}
-          onChange={setLecture}
         />
         <Select
           label="Skupina"
@@ -116,30 +126,38 @@ export default function BirdListPage() {
           onChange={setCategory}
         />
         <Select
+          label="Predavanje"
+          options={LECTURES}
+          value={lecture}
+          onChange={setLecture}
+        />
+        <Select
           label="Tip ispita"
           options={EXAM_TYPES}
           value={examType}
           onChange={setExamType}
         />
-        <div className="flex items-center gap-4">
-          <Toggle
-            label="Grupiraj"
-            value={groupByCategory}
-            onChange={setGroupByCategory}
-          />
+        <Select
+          label="Grupiranje"
+          options={GROUPING}
+          value={grouping}
+          onChange={setGrouping}
+        />
+        <div className="flex items-center gap-2">
+          <span className="md:min-w-[96] font-medium text-gray-700 dark:text-gray-300">Prikazano </span>
+          <p className="text-xs text-gray-500 dark:text-gray-300" title="prikazano / ukupno">{filteredBirds.length}/{birds.length}</p>
           <button
-            className="btn-primary"
+            className="btn-primary ml-2"
             onClick={reset}
           >
             Resetiraj
           </button>
-          <p className="text-xs text-gray-500 dark:text-gray-300" title="prikazano od ukupno">{filteredBirds.length}/{birds.length}</p>
         </div>
       </div>
 
 
       <ul className="container-padding-x flex gap-2 lg:gap-4 flex-wrap">
-        {groupByCategory ? Object.entries(groupedBirds).map(([category, birdsInCategory]) => (
+        {grouping === "Skupine" && Object.entries(groupedBirds).map(([category, birdsInCategory]) => (
           <li key={category} className="w-full mt-4">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-300 mb-4">{category}</h2>
             <ul className="flex gap-2 lg:gap-4 flex-wrap">
@@ -153,15 +171,46 @@ export default function BirdListPage() {
               ))}
             </ul>
           </li>
-        )) : (
-          filteredBirds.map(bird => (
+        ))}
+
+        {grouping === "Skupine i podskupine" && Object.entries(subGroupedBirds).map(([category, birdsInCategory]) => (
+          <li key={category} className="w-full mt-4">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-300 mb-4">{category}</h2>
+            <ul className="flex gap-2 lg:gap-4 flex-wrap">
+              {Array.isArray(birdsInCategory) ? birdsInCategory.map(bird => (
+                <li
+                  key={bird.id}
+                  className="border border-gray-300 bg-white text-gray-900 rounded-lg hover:shadow-lg transition-shadow w-full xs:w-48 lg:w-64 h-auto lg:h-64"
+                >
+                  <BirdCard bird={bird} />
+                </li>
+              )) : Object.entries(birdsInCategory).map(([subCategory, birdsInSubCategory]) => (
+                <li key={subCategory} className="w-full mt-4">
+                  <h3 className="text-xl font-semibold text-gray-500 dark:text-gray-400 mb-4">{subCategory}</h3>
+                  <ul className="flex gap-2 lg:gap-4 flex-wrap">
+                    {birdsInSubCategory.map(bird => (
+                      <li
+                        key={bird.id}
+                        className="border border-gray-300 bg-white text-gray-900 rounded-lg hover:shadow-lg transition-shadow w-full xs:w-48 lg:w-64 h-auto lg:h-64"
+                      >
+                        <BirdCard bird={bird} />
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+
+        {grouping === "Bez grupiranja" && filteredBirds.map(bird => (
             <li
               key={bird.id}
               className="border border-gray-300 bg-white text-gray-900 rounded-lg hover:shadow-lg transition-shadow w-full xs:w-48 lg:w-64 h-auto lg:h-64"
             >
             <BirdCard bird={bird} />
           </li>
-        )))}
+        ))}
       </ul>
 
       {showScrollTop && (
